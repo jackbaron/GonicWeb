@@ -1,65 +1,60 @@
 package main
 
 import (
-	"net/http"
+	"encoding/json"
+	"io"
+	"log"
+	"os"
+	"time"
+
+	"github.com/hoangnhat/project/dataservice"
+	"github.com/hoangnhat/project/helpers"
 
 	"github.com/gin-gonic/gin"
 )
 
-var db = make(map[string]string)
+// *****************************************************************************
+// Application Settings
+// *****************************************************************************
 
-func setupRouter() *gin.Engine {
-	// Disable Console Color
-	// gin.DisableConsoleColor()
-	r := gin.Default()
-
-	// Ping test
-	r.GET("/ping", func(c *gin.Context) {
-		c.String(http.StatusOK, "pong")
-	})
-
-	// Get user value
-	r.GET("/user/:name", func(c *gin.Context) {
-		user := c.Params.ByName("name")
-		value, ok := db[user]
-		if ok {
-			c.JSON(http.StatusOK, gin.H{"user": user, "value": value})
-		} else {
-			c.JSON(http.StatusOK, gin.H{"user": user, "status": "no value"})
-		}
-	})
-
-	// Authorized group (uses gin.BasicAuth() middleware)
-	// Same than:
-	// authorized := r.Group("/")
-	// authorized.Use(gin.BasicAuth(gin.Credentials{
-	//	  "foo":  "bar",
-	//	  "manu": "123",
-	//}))
-	authorized := r.Group("/", gin.BasicAuth(gin.Accounts{
-		"foo":  "bar", // user:foo password:bar
-		"manu": "123", // user:manu password:123
-	}))
-
-	authorized.POST("admin", func(c *gin.Context) {
-		user := c.MustGet(gin.AuthUserKey).(string)
-
-		// Parse JSON
-		var json struct {
-			Value string `json:"value" binding:"required"`
-		}
-
-		if c.Bind(&json) == nil {
-			db[user] = json.Value
-			c.JSON(http.StatusOK, gin.H{"status": "ok"})
-		}
-	})
-
-	return r
+// configuration contains the application settings
+type configuration struct {
+	Database dataservice.Info `json:"Database"`
+	Session  helpers.Session  `json:"Session"`
 }
 
+// config the settings variable
+var config = &configuration{}
+
 func main() {
-	r := setupRouter()
+	//* write Log file
+	dateTime := time.Now()
+	logFile, err := os.Create("logs/log" + dateTime.Format("01-02-2006"))
+	if err != nil {
+		panic(err)
+	}
+	gin.DefaultWriter = io.MultiWriter(logFile, os.Stdout)
+	log.SetOutput(gin.DefaultWriter)
+	//* end write Log file
+
+	//! connect DB
+	helpers.Load("dataservice"+string(os.PathSeparator)+"configDB.json", config)
+	// Configure the session cookie store
+	helpers.Configure(config.Session)
+	// Connect to database
+	dataservice.InitDb(config.Database)
+	//! end connect DB
+	r := setUpRouter()
+	r.Run(":8090")
+}
+
+func setUpRouter() *gin.Engine {
+	router := gin.Default()
 	// Listen and Server in 0.0.0.0:8080
-	r.Run(":8080")
+	return router
+}
+
+// ParseJSON unmarshals bytes to structs
+func (c *configuration) ParseJSON(b []byte) error {
+	return json.Unmarshal(b, &c)
 }
