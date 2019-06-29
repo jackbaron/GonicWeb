@@ -3,8 +3,8 @@ package dataservice
 import (
 	"fmt"
 	"log"
-	"projects/blog/models"
 
+	"github.com/hoangnhat/project/models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
