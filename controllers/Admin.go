@@ -36,7 +36,7 @@ func AdminLoginGET(c *gin.Context) {
 	})
 }
 
-//TODO: Create token and sql create
+//TODO: Run post man test insert userDB
 func AdminRegisterPost(c *gin.Context) {
 	var user models.User
 	user.Email = "thnhat94@gmail.com"
