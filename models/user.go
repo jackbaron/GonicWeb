@@ -9,7 +9,7 @@ type User struct {
 	Mobile    string `gorm:"type:varchar(16);not null;unique"`
 	FullName  string `gorm:"not null"`
 	AliasName string
-	Password  string `json:"-"`
+	Password  []byte
 	Avatar    string
 	Level     int64  `gorm:"not null;default:0"`
 	Token     string `gorm:"type:text"`

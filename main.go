@@ -7,6 +7,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/hoangnhat/project/routers"
+
 	"github.com/hoangnhat/project/dataservice"
 	"github.com/hoangnhat/project/helpers"
 
@@ -44,14 +46,8 @@ func main() {
 	// Connect to database
 	dataservice.InitDb(config.Database)
 	//! end connect DB
-	r := setUpRouter()
-	r.Run(":8090")
-}
-
-func setUpRouter() *gin.Engine {
-	router := gin.Default()
-	// Listen and Server in 0.0.0.0:8080
-	return router
+	router := routers.SetRouter()
+	router.Run(":8090")
 }
 
 // ParseJSON unmarshals bytes to structs
