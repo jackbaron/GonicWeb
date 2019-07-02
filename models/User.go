@@ -10,6 +10,7 @@ import (
 // User struct
 type User struct {
 	ID        uint   `gorm:"primary_key"`
+	UserName  string `gorm:"type:varchar(100);notn null;unique"`
 	Email     string `gorm:"type:varchar(100);not null;unique"`
 	Mobile    string `gorm:"type:varchar(16);not null;unique"`
 	FullName  string `gorm:"not null"`

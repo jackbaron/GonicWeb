@@ -31,3 +31,9 @@ func (repo *UserRepo) RegisterUser(obj *models.User) bool {
 	tx.Commit()
 	return true
 }
+
+//TODO create function login
+func (repo (*UserRepo) LoginUser(username, password string) bool {
+	tx := repo.db.Begin()
+
+}

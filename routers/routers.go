@@ -21,8 +21,9 @@ func SetRouter() *gin.Engine {
 
 	authorized.GET("/", controllers.BasicAuthenticateAdmin)
 	authorized.GET("/auth/login", controllers.AdminLoginGET)
+	authorized.POST("/auth/login", controllers.AdminLoginPOST)
 
-	r.POST("/register", controllers.AdminRegisterPost)
+	// r.GET("/register", controllers.AdminRegisterPost) // router insert user
 
 	return r
 }

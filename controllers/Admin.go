@@ -2,7 +2,8 @@ package controllers
 
 import (
 	"net/http"
-	"time"
+
+	"github.com/gin-gonic/contrib/sessions"
 
 	"github.com/hoangnhat/project/dataservice"
 
@@ -36,9 +37,17 @@ func AdminLoginGET(c *gin.Context) {
 	})
 }
 
-//TODO: Run post man test insert userDB
+//TODO add CSRF post form login admin
+func AdminLoginPOST(c *gin.Context) {
+	session := sessions.Default(c)
+	UserName := c.PostForm("UserName")
+	PassWord := c.PostForm("PassWord")
+	
+}
+
 func AdminRegisterPost(c *gin.Context) {
 	var user models.User
+	user.UserName = "admin"
 	user.Email = "thnhat94@gmail.com"
 	user.Mobile = "0868401501"
 	user.FullName = "TaHoangNhat"
@@ -52,23 +61,4 @@ func AdminRegisterPost(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"Flag": true, "Message": "Insert user successfully"})
-}
-
-// User struct
-type User struct {
-	ID        uint   `gorm:"primary_key"`
-	Email     string `gorm:"type:varchar(100);not null;unique"`
-	Mobile    string `gorm:"type:varchar(16);not null;unique"`
-	FullName  string `gorm:"not null"`
-	AliasName string
-	Password  []byte
-	Avatar    string
-	Level     int64 `gorm:"not null;default:0"`
-	Token     []byte
-	Role      int8 `gorm:"not null;default:1"`
-	Status    int8 `gorm:"not null;default:0"`
-	LastLogin time.Time
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt *time.Time `sql:"index"`
 }
