@@ -42,7 +42,7 @@ func AdminLoginPOST(c *gin.Context) {
 	session := sessions.Default(c)
 	UserName := c.PostForm("UserName")
 	PassWord := c.PostForm("PassWord")
-	
+
 }
 
 func AdminRegisterPost(c *gin.Context) {
