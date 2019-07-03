@@ -22,7 +22,6 @@ import (
 // configuration contains the application settings
 type configuration struct {
 	Database dataservice.Info `json:"Database"`
-	Session  helpers.Session  `json:"Session"`
 }
 
 // config the settings variable
@@ -42,7 +41,7 @@ func main() {
 	//! connect DB
 	helpers.Load("dataservice"+string(os.PathSeparator)+"configDB.json", config)
 	// Configure the session cookie store
-	helpers.Configure(config.Session)
+	// helpers.Configure(config.Session)
 	// Connect to database
 	dataservice.InitDb(config.Database)
 	//! end connect DB

@@ -3,14 +3,11 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/gin-gonic/contrib/sessions"
-
 	"github.com/hoangnhat/project/dataservice"
-
+	"github.com/hoangnhat/project/models"
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/hoangnhat/project/models"
-
+	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
@@ -42,6 +39,22 @@ func AdminLoginPOST(c *gin.Context) {
 	session := sessions.Default(c)
 	UserName := c.PostForm("UserName")
 	PassWord := c.PostForm("PassWord")
+	repo := dataservice.NewUserRepo()
+	user := repo.GetUser(UserName)
+	if user != nil {
+		err := bcrypt.CompareHashAndPassword(user.Password, []byte(PassWord))
+		if err == nil {
+			session.Set("user", user)
+			err = session.Save()
+			if err != nil {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate session token"})
+			} else {
+				c.JSON(http.StatusOK, gin.H{"message": "Successfully authenticated user"})
+			}
+		}
+	} else {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
+	}
 
 }
 

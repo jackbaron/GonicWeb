@@ -33,9 +33,9 @@ func (repo *UserRepo) RegisterUser(obj *models.User) bool {
 }
 
 //TODO create function login
-func (repo *UserRepo) LoginUser(username, password string) (user *models.User) {
+func (repo *UserRepo) GetUser(username string) (user *models.User) {
 	user = &models.User{}
-	err := repo.db.Where("username = ? and password = ?", username, password).Find(user)
+	err := repo.db.Where("username = ? and ", username).Find(user)
 	if err.RecordNotFound() {
 		log.Println("Username not correct")
 		return nil
