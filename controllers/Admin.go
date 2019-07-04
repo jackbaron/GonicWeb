@@ -1,13 +1,15 @@
 package controllers
 
 import (
+	"log"
 	"net/http"
+
+	"github.com/hoangnhat/project/helpers"
 
 	"github.com/hoangnhat/project/dataservice"
 	"github.com/hoangnhat/project/models"
 	"golang.org/x/crypto/bcrypt"
 
-	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,10 +21,19 @@ var secrets = gin.H{
 	"admin": gin.H{"email": "thnhat94@gmail.com", "phone": "0868401501"},
 }
 
+func IndexHome(c *gin.Context) {
+	c.String(200, "OK")
+}
+
 func BasicAuthenticateAdmin(c *gin.Context) {
 	user := c.MustGet(gin.AuthUserKey).(string)
 	if _, ok := secrets[user]; ok {
-		c.Redirect(http.StatusMovedPermanently, "admin/auth/login")
+		sess := helpers.Instance(c.Request)
+		if sess.Values["user"] != "" {
+			c.Redirect(http.StatusMovedPermanently, "/admin/auth/login")
+		} else {
+			log.Println("admin")
+		}
 	} else {
 		c.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
 	}
@@ -36,7 +47,7 @@ func AdminLoginGET(c *gin.Context) {
 
 //TODO add CSRF post form login admin
 func AdminLoginPOST(c *gin.Context) {
-	session := sessions.Default(c)
+	session := helpers.Instance(c.Request)
 	UserName := c.PostForm("UserName")
 	PassWord := c.PostForm("PassWord")
 	repo := dataservice.NewUserRepo()
@@ -44,12 +55,15 @@ func AdminLoginPOST(c *gin.Context) {
 	if user != nil {
 		err := bcrypt.CompareHashAndPassword(user.Password, []byte(PassWord))
 		if err == nil {
-			session.Set("user", user)
-			err = session.Save()
+			session.Values["id"] = user.ID
+			err = session.Save(c.Request, c.Writer)
+			log.Println(session.Values["user"])
 			if err != nil {
 				c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate session token"})
 			} else {
-				c.JSON(http.StatusOK, gin.H{"message": "Successfully authenticated user"})
+				log.Println("ok")
+				// c.JSON(http.StatusOK, gin.H{"message": "Successfully authenticated user"})
+				c.Redirect(http.StatusMovedPermanently, "/admin")
 			}
 		}
 	} else {
@@ -70,7 +84,7 @@ func AdminRegisterPost(c *gin.Context) {
 	err := repo.RegisterUser(&user)
 
 	if !err {
-		c.JSON(http.StatusInternalServerError, "Cannot insert iser")
+		c.JSON(http.StatusInternalServerError, "Cannot insert user")
 	}
 
 	c.JSON(http.StatusOK, gin.H{"Flag": true, "Message": "Insert user successfully"})
