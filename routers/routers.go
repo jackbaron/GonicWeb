@@ -12,7 +12,9 @@ import (
  */
 func SetRouter() *gin.Engine {
 	r := gin.Default()
-
+	r.Use(gin.Logger())
+	// Recovery middleware recovers from any panics and writes a 500 if there was one.
+	r.Use(gin.Recovery())
 	// set Up Html Global
 	r.LoadHTMLGlob("public/views/**/**/*")
 	r.Static("/css", "public/assets/css")
@@ -22,13 +24,13 @@ func SetRouter() *gin.Engine {
 	// 	"admin": "default",
 	// }))
 	// authorized.GET("/", controllers.BasicAuthenticateAdmin)
+	r.GET("manager/auth/login", controllers.AdminLoginGET)
+	r.POST("manager/auth/login", controllers.AdminLoginPOST)
 	authorized := r.Group("/admin")
-
 	authorized.Use(middlewares.AuthRequired())
 	{
 		authorized.GET("/", controllers.IndexHome)
-		authorized.GET("/auth/login", controllers.AdminLoginGET)
-		authorized.POST("/auth/login", controllers.AdminLoginPOST)
+		authorized.GET("/blog", controllers.IndexHome)
 	}
 	// r.GET("/register", controllers.AdminRegisterPost) // router insert user
 	return r

@@ -1,0 +1,51 @@
+[GIN-debug] [WARNING] Now Gin requires Go 1.6 or later and Go 1.7 will be required soon.
+
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] Loaded HTML Templates (3): 
+	- 
+	- login.html
+	- admin/auth/login.html
+
+[GIN-debug] GET    /css/*filepath            --> github.com/hoangnhat/project/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (5 handlers)
+[GIN-debug] HEAD   /css/*filepath            --> github.com/hoangnhat/project/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (5 handlers)
+[GIN-debug] GET    /manager/auth/login       --> github.com/hoangnhat/project/controllers.AdminLoginGET (5 handlers)
+[GIN-debug] POST   /manager/auth/login       --> github.com/hoangnhat/project/controllers.AdminLoginPOST (5 handlers)
+[GIN-debug] GET    /admin/                   --> github.com/hoangnhat/project/controllers.IndexHome (6 handlers)
+[GIN-debug] GET    /admin/blog               --> github.com/hoangnhat/project/controllers.IndexHome (6 handlers)
+[GIN-debug] Listening and serving HTTP on :8090
+[GIN-debug] redirecting request 301: /admin --> /admin/
+<nil>
+[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 301 with 200
+[GIN] 2019/07/05 - 13:37:22 | 200 |         998µs |             ::1 | GET      /admin/
+[GIN] 2019/07/05 - 13:37:22 | 200 |         998µs |             ::1 | GET      /admin/
+[GIN] 2019/07/05 - 13:37:22 | 200 |      1.0005ms |             ::1 | GET      /manager/auth/login
+[GIN] 2019/07/05 - 13:37:22 | 200 |      1.0005ms |             ::1 | GET      /manager/auth/login
+[GIN] 2019/07/05 - 13:37:22 | 200 |    124.0314ms |             ::1 | GET      /css/admin/bootstrap.min.css
+[GIN] 2019/07/05 - 13:37:22 | 200 |    124.0314ms |             ::1 | GET      /css/admin/bootstrap.min.css
+[GIN] 2019/07/05 - 13:37:22 | 200 |     16.9983ms |             ::1 | GET      /css/admin/font-awesome/css/font-awesome.css
+[GIN] 2019/07/05 - 13:37:22 | 200 |     16.9983ms |             ::1 | GET      /css/admin/font-awesome/css/font-awesome.css
+[GIN] 2019/07/05 - 13:37:22 | 200 |     47.9977ms |             ::1 | GET      /css/admin/animate.css
+[GIN] 2019/07/05 - 13:37:22 | 200 |     47.9977ms |             ::1 | GET      /css/admin/animate.css
+[GIN] 2019/07/05 - 13:37:22 | 200 |     62.9995ms |             ::1 | GET      /css/admin/style.css
+[GIN] 2019/07/05 - 13:37:22 | 200 |     62.9995ms |             ::1 | GET      /css/admin/style.css
+Correct username and password
+ok
+[GIN] 2019/07/05 - 13:37:26 | 301 |     119.637ms |             ::1 | POST     /manager/auth/login
+[GIN] 2019/07/05 - 13:37:26 | 301 |     119.637ms |             ::1 | POST     /manager/auth/login
+[GIN] 2019/07/05 - 13:39:07 | 200 |     89.2308ms |             ::1 | GET      /manager/auth/login
+[GIN] 2019/07/05 - 13:39:07 | 200 |     89.2308ms |             ::1 | GET      /manager/auth/login
+Correct username and password
+ok
+[GIN] 2019/07/05 - 13:44:49 | 301 |     75.9365ms |             ::1 | POST     /manager/auth/login
+[GIN] 2019/07/05 - 13:44:49 | 301 |     75.9365ms |             ::1 | POST     /manager/auth/login
+<nil>
+[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 301 with 200
+[GIN] 2019/07/05 - 13:44:49 | 200 |            0s |             ::1 | GET      /admin/blog
+[GIN] 2019/07/05 - 13:44:49 | 200 |            0s |             ::1 | GET      /admin/blog
+[GIN] 2019/07/05 - 13:44:49 | 200 |      1.0441ms |             ::1 | GET      /manager/auth/login
+[GIN] 2019/07/05 - 13:44:49 | 200 |      1.0441ms |             ::1 | GET      /manager/auth/login

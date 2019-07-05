@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/gorilla/sessions"
 	"github.com/hoangnhat/project/helpers"
 
 	"github.com/hoangnhat/project/dataservice"
@@ -21,23 +22,28 @@ var secrets = gin.H{
 	"admin": gin.H{"email": "thnhat94@gmail.com", "phone": "0868401501"},
 }
 
+// store will hold all session data
+var Store *sessions.CookieStore
+
 func IndexHome(c *gin.Context) {
-	c.String(200, "OK")
+	sess := helpers.Instance(c.Request)
+	user := sess.Values["id"]
+	c.JSON(http.StatusOK, gin.H{"user": user})
 }
 
-func BasicAuthenticateAdmin(c *gin.Context) {
-	user := c.MustGet(gin.AuthUserKey).(string)
-	if _, ok := secrets[user]; ok {
-		sess := helpers.Instance(c.Request)
-		if sess.Values["user"] != "" {
-			c.Redirect(http.StatusMovedPermanently, "/admin/auth/login")
-		} else {
-			log.Println("admin")
-		}
-	} else {
-		c.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
-	}
-}
+// func BasicAuthenticateAdmin(c *gin.Context) {
+// 	user := c.MustGet(gin.AuthUserKey).(string)
+// 	if _, ok := secrets[user]; ok {
+// 		sess := helpers.Instance(c.Request)
+// 		if sess.Values["user"] != "" {
+// 			c.Redirect(http.StatusMovedPermanently, "/admin/auth/login")
+// 		} else {
+// 			log.Println("admin")
+// 		}
+// 	} else {
+// 		c.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
+// 	}
+// }
 
 func AdminLoginGET(c *gin.Context) {
 	c.HTML(http.StatusOK, "admin/auth/login.html", gin.H{
@@ -55,15 +61,16 @@ func AdminLoginPOST(c *gin.Context) {
 	if user != nil {
 		err := bcrypt.CompareHashAndPassword(user.Password, []byte(PassWord))
 		if err == nil {
+			helpers.Empty(session)
 			session.Values["id"] = user.ID
+			session.Values["username"] = user.UserName
 			err = session.Save(c.Request, c.Writer)
-			log.Println(session.Values["user"])
 			if err != nil {
 				c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate session token"})
 			} else {
 				log.Println("ok")
-				// c.JSON(http.StatusOK, gin.H{"message": "Successfully authenticated user"})
-				c.Redirect(http.StatusMovedPermanently, "/admin")
+				c.JSON(http.StatusOK, gin.H{"message": "Successfully authenticated user", "ID": session.Values["id"]})
+				c.Redirect(http.StatusMovedPermanently, "/admin/blog")
 			}
 		}
 	} else {

@@ -2,6 +2,7 @@ package middlewares
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/hoangnhat/project/helpers"
@@ -11,14 +12,15 @@ import (
 
 func AuthRequired() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		session := helpers.Instance(c.Request)
-		user := session.Values["user"]
-		fmt.Println(user)
-		if user == nil {
+		sess := helpers.Instance(c.Request)
+		fmt.Println(sess)
+		if sess.Values["id"] == nil {
+			log.Println(sess.Values["id"])
 			// You'd normally redirect to login page
-			c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid session token"})
-			c.Redirect(http.StatusMovedPermanently, "/admin/auth/login")
+			// c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid session token"})
+			c.Redirect(http.StatusMovedPermanently, "/manager/auth/login")
 		} else {
+			log.Println("ok redirect")
 			// Continue down the chain to handler etc
 			c.Next()
 		}
