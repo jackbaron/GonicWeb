@@ -32,7 +32,7 @@ func CheckAuthExist() gin.HandlerFunc {
 		if sess.Values["id"] != nil {
 			// You'd normally redirect to login page
 			// c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid session token"})
-			c.Redirect(http.StatusMovedPermanently, "/admin")
+			c.Redirect(http.StatusMovedPermanently, "/admin/")
 		}
 	}
 }

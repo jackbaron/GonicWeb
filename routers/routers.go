@@ -22,10 +22,7 @@ func SetRouter() bool {
 	r.Static("/css", "public/assets/css")
 	// Init Sessions
 	//* Router Admin
-	// authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
-	// 	"admin": "default",
-	// }))
-	// authorized.GET("/", controllers.BasicAuthenticateAdmin)
+
 	routerLogin := r.Group("manager")
 	routerLogin.Use(middlewares.CheckAuthExist())
 	{
@@ -33,7 +30,10 @@ func SetRouter() bool {
 		routerLogin.POST("/auth/login", controllers.AdminLoginPOST)
 	}
 
-	authorized := r.Group("/admin")
+	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
+		"admin": "default",
+	}))
+	authorized.GET("", controllers.BasicAuthenticateAdmin)
 	authorized.Use(middlewares.AuthRequired())
 	{
 		authorized.GET("/", controllers.IndexHome)

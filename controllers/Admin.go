@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/hoangnhat/project/helpers"
@@ -26,19 +27,19 @@ func IndexHome(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"user": userID})
 }
 
-// func BasicAuthenticateAdmin(c *gin.Context) {
-// 	user := c.MustGet(gin.AuthUserKey).(string)
-// 	if _, ok := secrets[user]; ok {
-// 		sess := helpers.Instance(c.Request)
-// 		if sess.Values["user"] != "" {
-// 			c.Redirect(http.StatusMovedPermanently, "/admin/auth/login")
-// 		} else {
-// 			log.Println("admin")
-// 		}
-// 	} else {
-// 		c.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
-// 	}
-// }
+func BasicAuthenticateAdmin(c *gin.Context) {
+	user := c.MustGet(gin.AuthUserKey).(string)
+	if _, ok := secrets[user]; ok {
+		sess := helpers.Instance(c.Request)
+		if sess.Values["user"] != "" {
+			c.Redirect(http.StatusMovedPermanently, "/manager/auth/login")
+		} else {
+			log.Println("admin")
+		}
+	} else {
+		c.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
+	}
+}
 
 func AdminRegisterPost(c *gin.Context) {
 	var user models.User
