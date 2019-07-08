@@ -7,6 +7,10 @@
 			"revision": ""
 		},
 		{
+			"path": "get",
+			"revision": ""
+		},
+		{
 			"checksumSHA1": "0cytTxS0qPVjtknc7OrfuNmxvBE=",
 			"path": "github.com/dgrijalva/jwt-go",
 			"revision": "5e25c22bd5d6de03265bbe5462dcd162f85046f6",
@@ -63,6 +67,24 @@
 			"revisionTime": "2019-05-17T06:12:10Z"
 		},
 		{
+			"checksumSHA1": "66S00P4GDH4ng1B/hWWQX1+vdRY=",
+			"path": "github.com/gorilla/context",
+			"revision": "8559d4a6b87e4f517ec1846eb90a192b8748cc89",
+			"revisionTime": "2019-06-27T02:46:05Z"
+		},
+		{
+			"checksumSHA1": "gAOUQcmbKfDGlBOk8hZ0UJD5F2E=",
+			"path": "github.com/gorilla/securecookie",
+			"revision": "86450627d8e6b88e00ea41f228489b89d08a40de",
+			"revisionTime": "2019-07-07T03:38:17Z"
+		},
+		{
+			"checksumSHA1": "PpSeJbhKEk1lQ7BXjxOiRONU20s=",
+			"path": "github.com/gorilla/sessions",
+			"revision": "56c33e9da484d617e23f395ecec61db32d99dcf3",
+			"revisionTime": "2019-06-27T04:06:25Z"
+		},
+		{
 			"checksumSHA1": "RXSopFPGlhw7MD9uYxJ0oWN66JY=",
 			"path": "github.com/jinzhu/gorm",
 			"revision": "836fb2c19d84dac7b0272958dfb9af7cf0d0ade4",
@@ -109,6 +131,10 @@
 			"path": "github.com/ugorji/go/codec",
 			"revision": "31766e6012df12848d7396555f894f758da760e6",
 			"revisionTime": "2019-06-26T15:02:40Z"
+		},
+		{
+			"path": "go",
+			"revision": ""
 		},
 		{
 			"checksumSHA1": "oCH3J96RWvO8W4xjix47PModpio=",

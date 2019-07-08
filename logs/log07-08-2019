@@ -1,0 +1,80 @@
+[GIN-debug] [WARNING] Now Gin requires Go 1.6 or later and Go 1.7 will be required soon.
+
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] Loaded HTML Templates (3): 
+	- 
+	- login.html
+	- admin/auth/login.html
+
+[GIN-debug] GET    /css/*filepath            --> github.com/hoangnhat/project/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (5 handlers)
+[GIN-debug] HEAD   /css/*filepath            --> github.com/hoangnhat/project/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (5 handlers)
+[GIN-debug] GET    /manager/auth/login       --> github.com/hoangnhat/project/controllers.AdminLoginGET (6 handlers)
+[GIN-debug] POST   /manager/auth/login       --> github.com/hoangnhat/project/controllers.AdminLoginPOST (6 handlers)
+[GIN-debug] GET    /admin/                   --> github.com/hoangnhat/project/controllers.IndexHome (6 handlers)
+[GIN-debug] GET    /admin/blog               --> github.com/hoangnhat/project/controllers.IndexHome (6 handlers)
+[GIN-debug] Listening and serving HTTP on :3500
+[GIN] 2019/07/08 - 17:40:20 | 404 |            0s |       127.0.0.1 | GET      /
+[GIN] 2019/07/08 - 17:40:20 | 404 |       998.3µs |       127.0.0.1 | GET      /
+ok redirect
+[GIN] 2019/07/08 - 17:40:23 | 200 |       998.2µs |       127.0.0.1 | GET      /admin/
+[GIN] 2019/07/08 - 17:40:23 | 200 |       998.2µs |       127.0.0.1 | GET      /admin/
+[GIN-debug] redirecting request 301: /admin --> /admin/
+[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 301 with 200
+[GIN] 2019/07/08 - 17:40:30 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN] 2019/07/08 - 17:40:30 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN] 2019/07/08 - 17:40:30 | 200 |           1ms |       127.0.0.1 | GET      /manager/auth/login
+[GIN] 2019/07/08 - 17:40:30 | 200 |           1ms |       127.0.0.1 | GET      /manager/auth/login
+[GIN] 2019/07/08 - 17:40:30 | 200 |     71.9853ms |       127.0.0.1 | GET      /css/admin/font-awesome/css/font-awesome.css
+[GIN] 2019/07/08 - 17:40:30 | 200 |      78.998ms |       127.0.0.1 | GET      /css/admin/bootstrap.min.css
+[GIN] 2019/07/08 - 17:40:30 | 200 |     71.9853ms |       127.0.0.1 | GET      /css/admin/font-awesome/css/font-awesome.css
+[GIN] 2019/07/08 - 17:40:30 | 200 |      78.998ms |       127.0.0.1 | GET      /css/admin/bootstrap.min.css
+[GIN] 2019/07/08 - 17:40:30 | 200 |     70.9804ms |       127.0.0.1 | GET      /css/admin/animate.css
+[GIN] 2019/07/08 - 17:40:30 | 200 |     70.9804ms |       127.0.0.1 | GET      /css/admin/animate.css
+[GIN] 2019/07/08 - 17:40:30 | 200 |     71.9808ms |       127.0.0.1 | GET      /css/admin/style.css
+[GIN] 2019/07/08 - 17:40:30 | 200 |     73.9838ms |       127.0.0.1 | GET      /css/admin/style.css
+[GIN] 2019/07/08 - 17:40:30 | 404 |            0s |       127.0.0.1 | GET      /favicon.ico
+[GIN] 2019/07/08 - 17:40:30 | 404 |       998.3µs |       127.0.0.1 | GET      /favicon.ico
+Correct username and password
+Successfully authenticated user
+[GIN] 2019/07/08 - 17:40:33 | 301 |     72.9773ms |       127.0.0.1 | POST     /manager/auth/login
+[GIN] 2019/07/08 - 17:40:33 | 301 |     72.9773ms |       127.0.0.1 | POST     /manager/auth/login
+ok redirect
+[GIN] 2019/07/08 - 17:40:33 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN] 2019/07/08 - 17:40:33 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN-debug] redirecting request 301: /admin --> /admin/
+[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 301 with 200
+[GIN] 2019/07/08 - 17:40:49 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN] 2019/07/08 - 17:40:49 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN] 2019/07/08 - 17:40:49 | 200 |       967.4µs |       127.0.0.1 | GET      /manager/auth/login
+[GIN] 2019/07/08 - 17:40:49 | 200 |       967.4µs |       127.0.0.1 | GET      /manager/auth/login
+[GIN] 2019/07/08 - 17:40:49 | 200 |       3.007ms |       127.0.0.1 | GET      /css/admin/bootstrap.min.css
+[GIN] 2019/07/08 - 17:40:49 | 200 |       3.007ms |       127.0.0.1 | GET      /css/admin/bootstrap.min.css
+[GIN] 2019/07/08 - 17:40:49 | 200 |       973.8µs |       127.0.0.1 | GET      /css/admin/font-awesome/css/font-awesome.css
+[GIN] 2019/07/08 - 17:40:49 | 200 |       1.965ms |       127.0.0.1 | GET      /css/admin/font-awesome/css/font-awesome.css
+[GIN] 2019/07/08 - 17:40:49 | 200 |       1.008ms |       127.0.0.1 | GET      /css/admin/style.css
+[GIN] 2019/07/08 - 17:40:49 | 200 |      1.9987ms |       127.0.0.1 | GET      /css/admin/style.css
+[GIN] 2019/07/08 - 17:40:49 | 200 |            0s |       127.0.0.1 | GET      /css/admin/animate.css
+[GIN] 2019/07/08 - 17:40:49 | 200 |      1.0008ms |       127.0.0.1 | GET      /css/admin/animate.css
+[GIN] 2019/07/08 - 17:40:49 | 404 |            0s |       127.0.0.1 | GET      /favicon.ico
+[GIN] 2019/07/08 - 17:40:49 | 404 |            0s |       127.0.0.1 | GET      /favicon.ico
+Correct username and password
+Successfully authenticated user
+[GIN] 2019/07/08 - 17:40:52 | 301 |      67.997ms |       127.0.0.1 | POST     /manager/auth/login
+[GIN] 2019/07/08 - 17:40:52 | 301 |      67.997ms |       127.0.0.1 | POST     /manager/auth/login
+ok redirect
+[GIN] 2019/07/08 - 17:40:52 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN] 2019/07/08 - 17:40:52 | 200 |            0s |       127.0.0.1 | GET      /admin/
+ok redirect
+[GIN] 2019/07/08 - 17:40:54 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN] 2019/07/08 - 17:40:54 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN-debug] [WARNING] Headers were already written. Wanted to override status code 301 with 200
+[GIN] 2019/07/08 - 17:40:58 | 200 |       998.5µs |       127.0.0.1 | GET      /manager/auth/login
+[GIN] 2019/07/08 - 17:40:58 | 200 |       998.5µs |       127.0.0.1 | GET      /manager/auth/login
+ok redirect
+[GIN] 2019/07/08 - 17:40:58 | 200 |            0s |       127.0.0.1 | GET      /admin/
+[GIN] 2019/07/08 - 17:40:58 | 200 |            0s |       127.0.0.1 | GET      /admin/

@@ -1,6 +1,8 @@
 package routers
 
 import (
+	"log"
+
 	"github.com/hoangnhat/project/controllers"
 	"github.com/hoangnhat/project/middlewares"
 
@@ -10,7 +12,7 @@ import (
 /*
 * get router running
  */
-func SetRouter() *gin.Engine {
+func SetRouter() bool {
 	r := gin.Default()
 	r.Use(gin.Logger())
 	// Recovery middleware recovers from any panics and writes a 500 if there was one.
@@ -24,8 +26,13 @@ func SetRouter() *gin.Engine {
 	// 	"admin": "default",
 	// }))
 	// authorized.GET("/", controllers.BasicAuthenticateAdmin)
-	r.GET("manager/auth/login", controllers.AdminLoginGET)
-	r.POST("manager/auth/login", controllers.AdminLoginPOST)
+	routerLogin := r.Group("manager")
+	routerLogin.Use(middlewares.CheckAuthExist())
+	{
+		routerLogin.GET("/auth/login", controllers.AdminLoginGET)
+		routerLogin.POST("/auth/login", controllers.AdminLoginPOST)
+	}
+
 	authorized := r.Group("/admin")
 	authorized.Use(middlewares.AuthRequired())
 	{
@@ -33,5 +40,10 @@ func SetRouter() *gin.Engine {
 		authorized.GET("/blog", controllers.IndexHome)
 	}
 	// r.GET("/register", controllers.AdminRegisterPost) // router insert user
-	return r
+	err := r.Run(":3500")
+	if err != nil {
+		log.Fatal("Error listening and server", err)
+		return false
+	}
+	return true
 }

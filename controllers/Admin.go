@@ -1,10 +1,8 @@
 package controllers
 
 import (
-	"log"
 	"net/http"
 
-	"github.com/gorilla/sessions"
 	"github.com/hoangnhat/project/helpers"
 
 	"github.com/hoangnhat/project/dataservice"
@@ -22,13 +20,10 @@ var secrets = gin.H{
 	"admin": gin.H{"email": "thnhat94@gmail.com", "phone": "0868401501"},
 }
 
-// store will hold all session data
-var Store *sessions.CookieStore
-
 func IndexHome(c *gin.Context) {
-	sess := helpers.Instance(c.Request)
-	user := sess.Values["id"]
-	c.JSON(http.StatusOK, gin.H{"user": user})
+	session := helpers.Instance(c.Request)
+	userID := session.Values["id"]
+	c.JSON(http.StatusOK, gin.H{"user": userID})
 }
 
 // func BasicAuthenticateAdmin(c *gin.Context) {
@@ -44,40 +39,6 @@ func IndexHome(c *gin.Context) {
 // 		c.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
 // 	}
 // }
-
-func AdminLoginGET(c *gin.Context) {
-	c.HTML(http.StatusOK, "admin/auth/login.html", gin.H{
-		"title": "Login",
-	})
-}
-
-//TODO add CSRF post form login admin
-func AdminLoginPOST(c *gin.Context) {
-	session := helpers.Instance(c.Request)
-	UserName := c.PostForm("UserName")
-	PassWord := c.PostForm("PassWord")
-	repo := dataservice.NewUserRepo()
-	user := repo.GetUser(UserName)
-	if user != nil {
-		err := bcrypt.CompareHashAndPassword(user.Password, []byte(PassWord))
-		if err == nil {
-			helpers.Empty(session)
-			session.Values["id"] = user.ID
-			session.Values["username"] = user.UserName
-			err = session.Save(c.Request, c.Writer)
-			if err != nil {
-				c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate session token"})
-			} else {
-				log.Println("ok")
-				c.JSON(http.StatusOK, gin.H{"message": "Successfully authenticated user", "ID": session.Values["id"]})
-				c.Redirect(http.StatusMovedPermanently, "/admin/blog")
-			}
-		}
-	} else {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
-	}
-
-}
 
 func AdminRegisterPost(c *gin.Context) {
 	var user models.User
