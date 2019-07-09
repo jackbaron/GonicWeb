@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -40,9 +39,9 @@ func AdminLoginPOST(c *gin.Context) {
 		if err == nil {
 			helpers.Empty(session)
 			session.Values["id"] = user.ID
-			session.Values["username"] = user.UserName
+			session.Values["UserName"] = user.UserName
+			session.Values["Name"] = user.FullName
 			session.Save(c.Request, c.Writer)
-			fmt.Println(session)
 			log.Println("Successfully authenticated user")
 			// c.JSON(http.StatusOK, gin.H{"message": "Successfully authenticated user", "ID": session.Values["id"]})
 			c.Redirect(http.StatusMovedPermanently, "/admin/")
@@ -53,7 +52,7 @@ func AdminLoginPOST(c *gin.Context) {
 }
 
 func AdminLoginGET(c *gin.Context) {
-	c.HTML(http.StatusOK, "admin/auth/login.html", gin.H{
+	c.HTML(http.StatusOK, "Login", gin.H{
 		"title": "Login",
 	})
 }

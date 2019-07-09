@@ -22,9 +22,7 @@ var secrets = gin.H{
 }
 
 func IndexHome(c *gin.Context) {
-	session := helpers.Instance(c.Request)
-	userID := session.Values["id"]
-	c.JSON(http.StatusOK, gin.H{"user": userID})
+	c.HTML(http.StatusOK, "AdminHome", gin.H{"Title": "Home"})
 }
 
 func BasicAuthenticateAdmin(c *gin.Context) {

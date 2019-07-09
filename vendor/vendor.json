@@ -17,6 +17,12 @@
 			"revisionTime": "2019-06-20T18:01:02Z"
 		},
 		{
+			"checksumSHA1": "c/F55NNZOeLREpWKx1zmHYJqeoQ=",
+			"path": "github.com/gin-contrib/multitemplate",
+			"revision": "30e424939505d607907753c252dc209d8fdd496c",
+			"revisionTime": "2019-05-28T08:21:04Z"
+		},
+		{
 			"checksumSHA1": "qlEzrgKgIkh7y0ePm9BNo1cNdXo=",
 			"path": "github.com/gin-contrib/sse",
 			"revision": "54d8467d122d380a14768b6b4e5cd7ca4755938f",

@@ -3,23 +3,23 @@ package routers
 import (
 	"log"
 
+	"github.com/gin-contrib/multitemplate"
 	"github.com/hoangnhat/project/controllers"
 	"github.com/hoangnhat/project/middlewares"
 
 	"github.com/gin-gonic/gin"
 )
 
-/*
-* get router running
- */
+const URLPathViewAdmin = "public/views/admin/"
+
 func SetRouter() bool {
 	r := gin.Default()
 	r.Use(gin.Logger())
 	// Recovery middleware recovers from any panics and writes a 500 if there was one.
 	r.Use(gin.Recovery())
 	// set Up Html Global
-	r.LoadHTMLGlob("public/views/**/**/*")
-	r.Static("/css", "public/assets/css")
+	r.Static("/assets", "public/assets")
+	r.HTMLRender = buildTemplate()
 	// Init Sessions
 	//* Router Admin
 
@@ -31,8 +31,9 @@ func SetRouter() bool {
 	}
 
 	authorized := r.Group("/admin", gin.BasicAuth(gin.Accounts{
-		"admin": "default",
+		"admin": "admin",
 	}))
+
 	authorized.GET("", controllers.BasicAuthenticateAdmin)
 	authorized.Use(middlewares.AuthRequired())
 	{
@@ -46,4 +47,11 @@ func SetRouter() bool {
 		return false
 	}
 	return true
+}
+
+func buildTemplate() multitemplate.Renderer {
+	r := multitemplate.NewRenderer()
+	r.AddFromFiles("Login", URLPathViewAdmin+"auth/Login.html")
+	r.AddFromFiles("AdminHome", URLPathViewAdmin+"Base.html", URLPathViewAdmin+"Partials/Header.html", URLPathViewAdmin+"Partials/Footer.html", URLPathViewAdmin+"Partials/SideBar.html", URLPathViewAdmin+"Index.html")
+	return r
 }
