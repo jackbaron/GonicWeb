@@ -10,7 +10,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const URLPathViewAdmin = "public/views/admin/"
+const (
+	URLPathViewAdmin           = "public/views/admin/"
+	URLPathViewAdminPartials   = URLPathViewAdmin + "Partials/"
+	URLPathViewAdminBreadcrumb = URLPathViewAdmin + "Breadcrumb/"
+)
 
 func SetRouter() bool {
 	r := gin.Default()
@@ -38,8 +42,14 @@ func SetRouter() bool {
 	authorized.Use(middlewares.AuthRequired())
 	{
 		authorized.GET("/", controllers.IndexHome)
-		authorized.GET("/blog", controllers.IndexHome)
+		authorized.GET("/categories/:type", controllers.CategoriesIndex)
+		authorized.GET("/categories/:type/create", controllers.CategoriesCreateGET)
 	}
+
+	//! Router 404
+	r.NoRoute(func(c *gin.Context) {
+		c.HTML(200, "NotFound", gin.H{"Title": "Page Not Found"})
+	})
 	// r.GET("/register", controllers.AdminRegisterPost) // router insert user
 	err := r.Run(":3500")
 	if err != nil {
@@ -51,7 +61,34 @@ func SetRouter() bool {
 
 func buildTemplate() multitemplate.Renderer {
 	r := multitemplate.NewRenderer()
+	//*! Login and NotFound
+	r.AddFromFiles("NotFound", URLPathViewAdmin+"404.html",
+		URLPathViewAdminPartials+"Header.html",
+		URLPathViewAdminPartials+"Footer.html",
+		URLPathViewAdminPartials+"SideBar.html",
+		URLPathViewAdmin+"Index.html")
 	r.AddFromFiles("Login", URLPathViewAdmin+"auth/Login.html")
-	r.AddFromFiles("AdminHome", URLPathViewAdmin+"Base.html", URLPathViewAdmin+"Partials/Header.html", URLPathViewAdmin+"Partials/Footer.html", URLPathViewAdmin+"Partials/SideBar.html", URLPathViewAdmin+"Index.html")
+
+	//*! Home
+	r.AddFromFiles("AdminHome", URLPathViewAdmin+"Base.html",
+		URLPathViewAdminPartials+"Header.html",
+		URLPathViewAdminPartials+"Footer.html",
+		URLPathViewAdminPartials+"SideBar.html",
+		URLPathViewAdmin+"Index.html")
+
+	//*! Category
+	r.AddFromFiles("CategoriesIndex", URLPathViewAdmin+"Base.html",
+		URLPathViewAdminPartials+"Header.html",
+		URLPathViewAdminPartials+"Footer.html",
+		URLPathViewAdminPartials+"SideBar.html",
+		URLPathViewAdminBreadcrumb+"Index.html",
+		URLPathViewAdmin+"Categories/Index.html")
+	r.AddFromFiles("CategoriesCreate", URLPathViewAdmin+"Base.html",
+		URLPathViewAdminPartials+"Header.html",
+		URLPathViewAdminPartials+"Footer.html",
+		URLPathViewAdminPartials+"SideBar.html",
+		URLPathViewAdminBreadcrumb+"Create.html",
+		URLPathViewAdmin+"Categories/Create.html")
+
 	return r
 }

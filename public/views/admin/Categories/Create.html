@@ -1,0 +1,77 @@
+{{ define "content" }}
+    {{ template "breadcrumb" .}}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox-title">
+                    <h5>Fill out the form below <small>.</small></h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="post"  action="" class="form-horizontal" enctype="multipart/form-data">
+                        {{ if .listCategory }}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Choose Category</label>
+                            <div class="col-sm-10">
+                                <select class="select2_demo form-control">
+                                    <option></option>
+                                    {{ range .listCategory}}
+                                        <option value="{{ .listCategory.ID }}">{{ .listCategory.Name }}</option>
+                                    {{ end }}
+                                </select>
+                            </div>
+                        </div>
+                        {{ end }}
+                        <div class="form-group"><label class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10"><input type="text" required name="name" class="form-control"></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Intro</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" name="intro" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Content</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control summernote" rows="50" name="content"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Title</label>
+                            <div class="col-sm-10"><input type="text" required name="title" class="form-control"></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10"><input type="text" required name="description" class="form-control"></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-2 control-label">Image</label>
+                            <div class="col-sm-10">
+                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                    <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i> <span class="fileinput-filename"></span></div>
+                                    <span class="input-group-addon btn btn-default btn-file"><span class="fileinput-new">Select file</span>
+                                    <span class="fileinput-exists">Change</span>
+                                        <input type="file" accept="image/x-png,image/gif,image/jpeg" name="image">
+                                    </span>
+                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="pull-right">
+                                    <button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>&nbsp;Submit</button>
+                                    <button class="btn btn-warning js-clear-form" type="button"><i class="fa fa-warning"></i> <span class="bold">Clear</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{{ end }}

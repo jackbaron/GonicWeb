@@ -93,7 +93,7 @@ func InitDb(db Info) {
 			log.Println("Cannot connect DB MYSQL", err)
 		}
 		// Migrate the schema
-		dbcon.AutoMigrate(&models.User{})
+		dbcon.AutoMigrate(&models.User{}, &models.Category{}, &models.Content{})
 	// case TypePostgreSQL:
 	// 	dbcon, err := gorm.Open("postgres", "host=myhost port=myport user=gorm dbname=gorm password=mypassword")
 	// 	if err != nil {

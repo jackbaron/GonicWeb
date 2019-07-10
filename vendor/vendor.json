@@ -91,6 +91,12 @@
 			"revisionTime": "2019-06-27T04:06:25Z"
 		},
 		{
+			"checksumSHA1": "JN0rISK+1g2cgErLMM2TNMkDaRw=",
+			"path": "github.com/gosimple/slug",
+			"revision": "8890d43a2a586b3db42a4e8cc34483388efa1afc",
+			"revisionTime": "2019-06-12T06:16:41Z"
+		},
+		{
 			"checksumSHA1": "RXSopFPGlhw7MD9uYxJ0oWN66JY=",
 			"path": "github.com/jinzhu/gorm",
 			"revision": "836fb2c19d84dac7b0272958dfb9af7cf0d0ade4",
@@ -131,6 +137,12 @@
 			"path": "github.com/modern-go/reflect2",
 			"revision": "94122c33edd36123c84d5368cfb2b69df93a0ec8",
 			"revisionTime": "2018-07-18T01:23:57Z"
+		},
+		{
+			"checksumSHA1": "iJkzMxL25EBhdFbYGiQNTcXJt2s=",
+			"path": "github.com/rainycape/unidecode",
+			"revision": "cb7f23ec59bec0d61b19c56cd88cee3d0cc1870c",
+			"revisionTime": "2015-09-07T02:38:54Z"
 		},
 		{
 			"checksumSHA1": "TvvNpC2WSnWCBfp+itazAA2P85w=",
