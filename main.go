@@ -46,8 +46,11 @@ func main() {
 	// Connect to database
 	dataservice.InitDb(config.Database)
 	//! end connect DB
-	router := routers.SetRouter()
-	router.Run(":8090")
+	start := routers.SetRouter()
+	if !start {
+		panic("error. Cannot start server")
+	}
+
 }
 
 // ParseJSON unmarshals bytes to structs

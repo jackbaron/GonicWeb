@@ -3,6 +3,26 @@
 	"ignore": "test",
 	"package": [
 		{
+			"path": "appengine/cloudsql",
+			"revision": ""
+		},
+		{
+			"path": "get",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "0cytTxS0qPVjtknc7OrfuNmxvBE=",
+			"path": "github.com/dgrijalva/jwt-go",
+			"revision": "5e25c22bd5d6de03265bbe5462dcd162f85046f6",
+			"revisionTime": "2019-06-20T18:01:02Z"
+		},
+		{
+			"checksumSHA1": "c/F55NNZOeLREpWKx1zmHYJqeoQ=",
+			"path": "github.com/gin-contrib/multitemplate",
+			"revision": "30e424939505d607907753c252dc209d8fdd496c",
+			"revisionTime": "2019-05-28T08:21:04Z"
+		},
+		{
 			"checksumSHA1": "qlEzrgKgIkh7y0ePm9BNo1cNdXo=",
 			"path": "github.com/gin-contrib/sse",
 			"revision": "54d8467d122d380a14768b6b4e5cd7ca4755938f",
@@ -41,10 +61,58 @@
 			"versionExact": "v1.3.0"
 		},
 		{
+			"checksumSHA1": "aNZPEOjiyAgS+Y0n19AF8vimMc4=",
+			"path": "github.com/go-sql-driver/mysql",
+			"revision": "877a9775f06853f611fb2d4e817d92479242d1cd",
+			"revisionTime": "2019-05-10T10:23:35Z"
+		},
+		{
 			"checksumSHA1": "CGj8VcI/CpzxaNqlqpEVM7qElD4=",
 			"path": "github.com/golang/protobuf/proto",
 			"revision": "b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f",
 			"revisionTime": "2019-05-17T06:12:10Z"
+		},
+		{
+			"checksumSHA1": "66S00P4GDH4ng1B/hWWQX1+vdRY=",
+			"path": "github.com/gorilla/context",
+			"revision": "8559d4a6b87e4f517ec1846eb90a192b8748cc89",
+			"revisionTime": "2019-06-27T02:46:05Z"
+		},
+		{
+			"checksumSHA1": "gAOUQcmbKfDGlBOk8hZ0UJD5F2E=",
+			"path": "github.com/gorilla/securecookie",
+			"revision": "86450627d8e6b88e00ea41f228489b89d08a40de",
+			"revisionTime": "2019-07-07T03:38:17Z"
+		},
+		{
+			"checksumSHA1": "PpSeJbhKEk1lQ7BXjxOiRONU20s=",
+			"path": "github.com/gorilla/sessions",
+			"revision": "56c33e9da484d617e23f395ecec61db32d99dcf3",
+			"revisionTime": "2019-06-27T04:06:25Z"
+		},
+		{
+			"checksumSHA1": "JN0rISK+1g2cgErLMM2TNMkDaRw=",
+			"path": "github.com/gosimple/slug",
+			"revision": "8890d43a2a586b3db42a4e8cc34483388efa1afc",
+			"revisionTime": "2019-06-12T06:16:41Z"
+		},
+		{
+			"checksumSHA1": "RXSopFPGlhw7MD9uYxJ0oWN66JY=",
+			"path": "github.com/jinzhu/gorm",
+			"revision": "836fb2c19d84dac7b0272958dfb9af7cf0d0ade4",
+			"revisionTime": "2019-06-30T07:50:19Z"
+		},
+		{
+			"checksumSHA1": "w5/naAzcG0+g6aYx63/of1Wbgqw=",
+			"path": "github.com/jinzhu/gorm/dialects/mysql",
+			"revision": "836fb2c19d84dac7b0272958dfb9af7cf0d0ade4",
+			"revisionTime": "2019-06-30T07:50:19Z"
+		},
+		{
+			"checksumSHA1": "Hf2EdZUOQfrn+iW34gg2/0GHo94=",
+			"path": "github.com/jinzhu/inflection",
+			"revision": "f5c5f50e6090ae76a29240b61ae2a90dd810112e",
+			"revisionTime": "2019-06-03T04:28:36Z"
 		},
 		{
 			"checksumSHA1": "4DgEcOv2o9NyZAHCbdS76mToqpU=",
@@ -71,16 +139,44 @@
 			"revisionTime": "2018-07-18T01:23:57Z"
 		},
 		{
+			"checksumSHA1": "iJkzMxL25EBhdFbYGiQNTcXJt2s=",
+			"path": "github.com/rainycape/unidecode",
+			"revision": "cb7f23ec59bec0d61b19c56cd88cee3d0cc1870c",
+			"revisionTime": "2015-09-07T02:38:54Z"
+		},
+		{
 			"checksumSHA1": "TvvNpC2WSnWCBfp+itazAA2P85w=",
 			"path": "github.com/ugorji/go/codec",
 			"revision": "31766e6012df12848d7396555f894f758da760e6",
 			"revisionTime": "2019-06-26T15:02:40Z"
 		},
 		{
+			"path": "go",
+			"revision": ""
+		},
+		{
+			"checksumSHA1": "oCH3J96RWvO8W4xjix47PModpio=",
+			"path": "golang.org/x/crypto/bcrypt",
+			"revision": "4def268fd1a49955bfb3dda92fe3db4f924f2285",
+			"revisionTime": "2019-07-01T08:59:26Z"
+		},
+		{
+			"checksumSHA1": "q+XI9g44wd9mYvf3S5Wo8YZjAus=",
+			"path": "golang.org/x/crypto/blowfish",
+			"revision": "4def268fd1a49955bfb3dda92fe3db4f924f2285",
+			"revisionTime": "2019-07-01T08:59:26Z"
+		},
+		{
 			"checksumSHA1": "oxQzknCJtgckDEKh+zp99Ph3Qkg=",
 			"path": "golang.org/x/sys/unix",
 			"revision": "04f50cda93cbb67f2afa353c52f342100e80e625",
 			"revisionTime": "2019-06-26T21:29:17Z"
+		},
+		{
+			"checksumSHA1": "W/pYxFe8/FHT10/wulwesJsOoUw=",
+			"path": "google.golang.org/appengine/cloudsql",
+			"revision": "b2f4a3cf3c67576a2ee09e1fe62656a5086ce880",
+			"revisionTime": "2019-06-06T17:30:15Z"
 		},
 		{
 			"checksumSHA1": "P/k5ZGf0lEBgpKgkwy++F7K1PSg=",

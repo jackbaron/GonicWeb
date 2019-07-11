@@ -1,3 +1,4 @@
+Cannot connect DB MYSQL dial tcp 127.0.0.1:3306: connect: connection refused
 [GIN-debug] [WARNING] Now Gin requires Go 1.6 or later and Go 1.7 will be required soon.
 
 [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
@@ -7,13 +8,13 @@
  - using code:	gin.SetMode(gin.ReleaseMode)
 
 [GIN-debug] Loaded HTML Templates (3): 
+	- 
 	- login.html
 	- admin/auth/login.html
-	- 
 
 [GIN-debug] GET    /css/*filepath            --> github.com/hoangnhat/project/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
 [GIN-debug] HEAD   /css/*filepath            --> github.com/hoangnhat/project/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
 [GIN-debug] GET    /admin/                   --> github.com/hoangnhat/project/controllers.BasicAuthenticateAdmin (4 handlers)
 [GIN-debug] GET    /admin/auth/login         --> github.com/hoangnhat/project/controllers.AdminLoginGET (4 handlers)
-[GIN-debug] GET    /register                 --> github.com/hoangnhat/project/vendor/github.com/gin-gonic/gin.RecoveryWithWriter.func1 (2 handlers)
+[GIN-debug] POST   /register                 --> github.com/hoangnhat/project/controllers.AdminRegisterPost (3 handlers)
 [GIN-debug] Listening and serving HTTP on :8090

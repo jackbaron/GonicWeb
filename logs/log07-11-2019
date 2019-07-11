@@ -1,0 +1,21 @@
+[GIN-debug] [WARNING] Now Gin requires Go 1.6 or later and Go 1.7 will be required soon.
+
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /assets/*filepath         --> github.com/hoangnhat/project/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (5 handlers)
+[GIN-debug] HEAD   /assets/*filepath         --> github.com/hoangnhat/project/vendor/github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (5 handlers)
+[GIN-debug] GET    /manager/auth/login       --> github.com/hoangnhat/project/controllers.AdminLoginGET (6 handlers)
+[GIN-debug] POST   /manager/auth/login       --> github.com/hoangnhat/project/controllers.AdminLoginPOST (6 handlers)
+[GIN-debug] GET    /admin                    --> github.com/hoangnhat/project/controllers.BasicAuthenticateAdmin (6 handlers)
+[GIN-debug] GET    /admin/                   --> github.com/hoangnhat/project/controllers.IndexHome (7 handlers)
+[GIN-debug] GET    /admin/categories/:type   --> github.com/hoangnhat/project/controllers.CategoriesIndex (7 handlers)
+[GIN-debug] GET    /admin/categories/:type/create --> github.com/hoangnhat/project/controllers.CategoriesCreateGET (7 handlers)
+[GIN-debug] POST   /admin/categories/:type/create --> github.com/hoangnhat/project/controllers.CategoriesCreatePOST (7 handlers)
+[GIN-debug] Listening and serving HTTP on :3500
+ok redirect
+[GIN] 2019/07/11 - 17:46:22 | 400 |       928.3µs |       127.0.0.1 | POST     /admin/categories/blog/create
+[GIN] 2019/07/11 - 17:46:22 | 400 |       928.3µs |       127.0.0.1 | POST     /admin/categories/blog/create

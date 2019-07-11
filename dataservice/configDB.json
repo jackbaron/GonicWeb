@@ -43,8 +43,8 @@
 		"Name": "gosess",
 		"Options": {
 			"Path": "/",
-			"Domain": "",
-			"MaxAge": -1,
+			"Domain": "localhost",
+			"MaxAge": 28800,
 			"Secure": false,
 			"HttpOnly": true
 		}

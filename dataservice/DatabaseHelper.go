@@ -94,6 +94,8 @@ func InitDb(db Info) {
 		}
 		// Migrate the schema
 		dbcon.AutoMigrate(&models.User{})
+		dbcon.AutoMigrate(&models.Category{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT")
+		dbcon.AutoMigrate(&models.Content{}).AddForeignKey("user_id", "users(id)", "RESTRICT", "RESTRICT").AddForeignKey("category_id", "categories(id)", "RESTRICT", "RESTRICT")
 	// case TypePostgreSQL:
 	// 	dbcon, err := gorm.Open("postgres", "host=myhost port=myport user=gorm dbname=gorm password=mypassword")
 	// 	if err != nil {

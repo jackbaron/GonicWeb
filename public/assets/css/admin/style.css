@@ -3583,7 +3583,7 @@ video {
   padding: 15px;
 }
 .note-editor.note-frame {
-  border: none;
+  /*border: none;*/
 }
 .note-editor.panel {
   margin-bottom: 0;
