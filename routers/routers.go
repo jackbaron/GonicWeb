@@ -25,6 +25,10 @@ func SetRouter() bool {
 	r.Static("/assets", "public/assets")
 	r.HTMLRender = buildTemplate()
 	// Init Sessions
+	//! Router 404
+	// r.NoRoute(func(c *gin.Context) {
+	// 	c.HTML(200, "NotFound", gin.H{"Title": "Page Not Found"})
+	// })
 	//* Router Admin
 
 	routerLogin := r.Group("manager")
@@ -44,12 +48,9 @@ func SetRouter() bool {
 		authorized.GET("/", controllers.IndexHome)
 		authorized.GET("/categories/:type", controllers.CategoriesIndex)
 		authorized.GET("/categories/:type/create", controllers.CategoriesCreateGET)
+		authorized.POST("/categories/:type/create", controllers.CategoriesCreatePOST)
 	}
 
-	//! Router 404
-	r.NoRoute(func(c *gin.Context) {
-		c.HTML(200, "NotFound", gin.H{"Title": "Page Not Found"})
-	})
 	// r.GET("/register", controllers.AdminRegisterPost) // router insert user
 	err := r.Run(":3500")
 	if err != nil {
