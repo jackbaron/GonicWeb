@@ -42,8 +42,8 @@ func BasicAuthenticateAdmin(c *gin.Context) {
 func AdminRegisterPost(c *gin.Context) {
 	var user models.User
 	user.UserName = "admin"
-	user.Email = "thnhat94@gmail.com"
-	user.Mobile = "0868401501"
+	user.Email = "admin@gmail.com"
+	user.Mobile = ""
 	user.FullName = "TaHoangNhat"
 	user.AliasName = "JPME"
 	user.Password, _ = bcrypt.GenerateFromPassword([]byte("nhat1194"), bcrypt.DefaultCost)
